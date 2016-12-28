@@ -1,0 +1,13 @@
+- name: install influxdb
+  yum: name=influxdb state=latest
+
+- name: setup influxdb config
+  template:
+    src: influxdb.conf
+    dest: /etc/influxdb/influxdb.conf
+  notify: restart influxdb
+
+- name: start and enable influxdb
+  service: name=influxdb state=started enabled=yes
+
+- include: influxdb_setup.yml

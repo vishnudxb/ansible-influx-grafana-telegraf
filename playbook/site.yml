@@ -1,0 +1,35 @@
+- name: influxdb
+  hosts: influxdb
+  gather_facts: true
+  become: true
+  roles:
+    - influxdb
+  tags:
+    - influxdb
+
+- name: influxdb telegraf
+  hosts: all
+  gather_facts: true
+  become: true
+  roles:
+    - influxdb-telegraf
+  tags:
+    - telegraf
+
+- name: influxdb kapacitor
+  hosts: kapacitor
+  gather_facts: true
+  become: true
+  roles:
+    - influxdb-kapacitor
+  tags:
+    - kapacitor
+
+- name: grafana
+  hosts: grafana
+  gather_facts: true
+  become: true
+  roles:
+    - grafana
+  tags:
+    - grafana

@@ -1,0 +1,12 @@
+[development]
+localhost ansible_ssh_host=localhost private_ip=localhost private ip
+
+
+[influxdb]
+localhost
+
+[kapacitor]
+localhost
+
+[grafana]
+localhost 

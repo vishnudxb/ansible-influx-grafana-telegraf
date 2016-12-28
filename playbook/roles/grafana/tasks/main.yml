@@ -1,0 +1,23 @@
+- name: install grafana repo
+  copy: src=grafana.repo dest=/etc/yum.repos.d/grafana.repo
+
+- name: install grafana
+  yum: name=grafana state=latest
+  notify: restart grafana server
+
+- name: install grafana.ini config
+  template: src=grafana.ini dest=/etc/grafana/grafana.ini
+  notify: restart grafana server
+
+- name: start grafana
+  service: name=grafana-server state=started enabled=yes
+
+- name: install Nginx
+  yum: name=nginx state=latest
+
+- name: start Nginx
+  service: name=nginx state=started enabled=yes
+
+- name: Copy Nginx config
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf
+  notify: restart nginx server
